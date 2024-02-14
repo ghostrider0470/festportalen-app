@@ -2,7 +2,7 @@ import {Avatar, Box, IconButton, Menu, MenuItem, Tooltip, Typography} from "@mui
 import React from "react";
 
 
-const ProfileMenu: React.FC = () => {
+export const ProfileMenu: React.FC = () => {
 
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);

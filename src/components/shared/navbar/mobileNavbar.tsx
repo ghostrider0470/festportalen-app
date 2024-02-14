@@ -1,18 +1,15 @@
 import {Box, IconButton, Menu, Stack} from "@mui/material";
-import logo from "../../../../../public/images/logo.png";
+import logo from "../../../../public/images/logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import * as React from "react";
-import MenuItems, {MenuItemLink} from "./menuItems.tsx";
+import {MenuItemLink, MenuItems} from "./renderMenu.tsx";
 
 
-const pages: MenuItemLink[] = [
-    {link: 'products', text: 'Products'},
-    {link: 'pricing', text: 'Pricing'},
-    {link: 'blog', text: 'Blog'}
-];
+interface MobileNavbarProps {
+    pages: MenuItemLink[];
+}
 
-
-const MobileNavbar: React.FC = () => {
+const MobileNavbar: React.FC<MobileNavbarProps> = (props) => {
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -84,7 +81,7 @@ const MobileNavbar: React.FC = () => {
                               }
                           }}>
                         <MenuItems
-                            items={pages}
+                            items={props.pages}
                             handleClose={handleCloseNavMenu}
                         />
                     </Menu>
