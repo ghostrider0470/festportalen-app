@@ -7,7 +7,7 @@ export const store = configureStore({
     reducer: {
         // Add the reducer to the store on the `theme` key
         theme: themeSlice.reducer,
-        user: authSlice.reducer,
+        auth: authSlice.reducer,
     },
 });
 // Infer the `RootState` and `AppDispatch` types from the store itself

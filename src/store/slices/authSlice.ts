@@ -1,22 +1,36 @@
 // src/store/slices/authSlice.ts
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-interface AuthState {
-    isAuthenticated: boolean;
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+
+
+export interface AuthRequest {
+    email: string;
+    password: string;
+    rememberMe: boolean;
+}
+
+export interface AuthState {
+    succeeded: boolean;
     token: string | null;
-    refeshToken: string | null;
     user: User | null;
 }
 
 interface User {
     name: string;
     email: string;
-    to: boolean;
 }
+
 const initialAuthState: AuthState = {
-    isAuthenticated: false,
+    succeeded: false,
     token: null,
-    refeshToken: null,
     user: null,
+};
+
+const persistAuthState = (state: AuthState) => {
+    sessionStorage.setItem('auth', JSON.stringify(state));
+}
+
+const resetAuthState = () => {
+    return initialAuthState;
 };
 
 export const authSlice = createSlice({
@@ -24,19 +38,19 @@ export const authSlice = createSlice({
     initialState: initialAuthState,
     reducers: {
         login: (state, action: PayloadAction<AuthState>) => {
-            state.isAuthenticated = true;
+            state.succeeded = action.payload.succeeded;
             state.token = action.payload.token;
-            state.refeshToken = action.payload.refeshToken;
-            state.user = action.payload.user;
+            persistAuthState(state);
+            window.location.href = '/';
         },
         logout: (state) => {
-            state.isAuthenticated = false;
-            state.token = null;
-            state.refeshToken = null;
-            state.user = null;
+            state = resetAuthState();
+            persistAuthState(state);
+            window.location.href = '/';
         },
-    },
+    }
 });
 
-export default authSlice.reducer;
-export const { login, logout } = authSlice.actions;
+export default authSlice;
+
+export const {login, logout} = authSlice.actions;

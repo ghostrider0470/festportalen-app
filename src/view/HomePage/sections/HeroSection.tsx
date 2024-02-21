@@ -1,17 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import {Box, Container, Typography} from "@mui/material";
 
 const HeroSection = () => {
-  return (
-    <Box>
-      <Box>
-        <img src="../public/images" alt="logo" />
-      </Box>
-      <Box>
-        <Typography variant="h5">Noe til enhver anledning!</Typography>
-      </Box>
-      <Box>input goes here</Box>
-    </Box>
-  );
+    return (
+        <Container sx={{background:'yellow'}}>
+            <Box sx={{display:"flex", justifyContent:"center"}}>
+                <img src="/public/images/logo.png" alt="logo" />
+            </Box>
+            <Box display="flex" justifyContent="center">
+                <Typography variant="h5">Noe til enhver anledning!</Typography>
+            </Box>
+            <Box>input goes here</Box>
+        </Container>
+    );
 };
 
 export default HeroSection;

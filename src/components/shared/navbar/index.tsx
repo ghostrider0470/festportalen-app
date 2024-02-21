@@ -10,6 +10,7 @@ import MobileNavbar from "./mobileNavbar.tsx";
 import NavbarLogo from "./navbarLogo.tsx";
 import {ProfileMenu} from "./profileMenu.tsx";
 import {MenuItemLink, NavItems} from "./renderMenu.tsx";
+import {useIsAuthenticated} from "../../../hooks/auth.ts";
 // import {ProfileMenu} from "./profileMenu.tsx";
 
 
@@ -32,6 +33,7 @@ export interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = (props) => {
+    const isAuth = useIsAuthenticated();
     return (
         <AppBar sx={{minHeight: '80px', justifyContent: 'center', position: 'static'}}>
             <Container maxWidth="xl">
@@ -45,8 +47,8 @@ const Navbar: React.FC<NavbarProps> = (props) => {
                     <Box sx={{ml: 5, flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         <NavItems items={props.pages}/>
                     </Box>
-
-                    <ProfileMenu/>
+                    {isAuth && <ProfileMenu/>}
+                    {/*<ProfileMenu/>*/}
 
                 </Toolbar>
             </Container>

@@ -1,37 +1,53 @@
-import React from "react";
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
-import {useIsAuthenticated} from "../hooks/auth.ts";
+import React, {useEffect} from "react";
+import {createBrowserRouter, RouterProvider,} from "react-router-dom";
+import {useAuth, useIsAuthenticated} from "../hooks/auth.ts";
 import PublicLayout from "../layout/PublicLayout.tsx";
+import LoginPage from "../view/LoginPage/LoginPage.tsx";
+import HomePage from "../view/HomePage/HomePage.tsx";
+import PrivateLayout from "../layout/PrivateLayout.tsx";
+
 
 const RouteProvider: React.FC = () => {
+    const auth = useAuth();
+    // // Define private routes for authenticated users
 
+    useEffect(() => {
+        console.info('authSlice:', auth);
+    }, [auth]);
+
+    // const router = isAuthenticated ? privateRoutes : publicRoutes;
     const privateRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <div>Private</div>,
+            element: <PrivateLayout/>,
+            children: [
+                {path: "/", element: <HomePage/>, index: true},
+                {path: "/login", element: <LoginPage/>},
+            ],
         },
+
     ]);
 
     const publicRoutes = createBrowserRouter([
         {
             path: "/",
             element: <PublicLayout/>,
+            children: [
+                {path: "/", element: <HomePage/>, index: true},
+                {path: "/login", element: <LoginPage/>},
+            ],
         },
-
     ]);
 
     const isAuthenticated = useIsAuthenticated();
     console.info('isAuthenticated:', isAuthenticated);
 
-    var router = isAuthenticated ? privateRoutes : publicRoutes;
+    const router = isAuthenticated ? privateRoutes : publicRoutes;
 
     return (
         <>
             <RouterProvider router={router}/>
         </>
-    )
+    );
 }
 export default RouteProvider;

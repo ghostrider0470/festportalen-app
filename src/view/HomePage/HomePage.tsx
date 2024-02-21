@@ -1,10 +1,10 @@
-import { Container, Grid, Typography } from "@mui/material";
+import {Grid, Typography } from "@mui/material";
 import HeroSection from "./sections/HeroSection";
 
 const HomePage = () => {
   return (
     <>
-      <Container>
+      {/*<Container>*/}
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <HeroSection />
@@ -17,7 +17,7 @@ const HomePage = () => {
             <Typography variant="body2">I am body2 element</Typography>
           </Grid>
         </Grid>
-      </Container>
+      {/*</Container>*/}
     </>
   );
 };
