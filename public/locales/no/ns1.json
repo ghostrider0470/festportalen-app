@@ -1,0 +1,36 @@
+{
+  "Routes": {
+    "Home": "Hjem",
+    "Advertise": "annonser-hos-oss",
+    "Contact": "ta-kontakt",
+    "Login": "logg-inn",
+    "Register": "registrer"
+  },
+  "Components": {
+  },
+  "Layout": {
+    "TopBar": {
+      "Home": "Hjem",
+      "Advertise": "Annonser hos oss",
+      "Contact": "Ta kontakt",
+      "Login": "Logg inn",
+      "Register": "Registrer"
+    },
+    "Footer": {
+      "AboutUs": "Om oss",
+      "OrgNo": "Org. No.: 929 322 193",
+      "Contact": "Ta kontakt",
+      "Email: info@festportalen.no": "E-post: info@festportalen.no",
+      "Email": "info@festportalen.no",
+      "Information": "Informasjon",
+      "PrivacyStatement": "Personvernerklæring",
+      "PrivacyPolicy": "Avtalevilkår",
+      "Copyright": "© Copyright 2021 - 2024 Festportalen. Alle rettigheter reservert"
+    }
+  },
+  "Views": {
+    "HomePage": {
+      "HeroText": "Noe til enhver anledning!"
+    }
+  }
+}

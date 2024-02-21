@@ -1,0 +1,36 @@
+{
+  "Routes": {
+    "Home": "home",
+    "Advertise": "advertise",
+    "Contact": "contact",
+    "Login": "login",
+    "Register": "register"
+  },
+  "Components": {
+  },
+  "Layout": {
+    "TopBar": {
+      "Home": "Home",
+      "Advertise": "Advertise with us",
+      "Contact": "Contact us",
+      "Login": "Login",
+      "Register": "Register"
+    },
+    "Footer": {
+      "AboutUs": "About Us",
+      "OrgNo": "Org. No.: 929 322 193",
+      "Contact": "Contact us",
+      "Email: info@festportalen.no": "Email: info@festportalen.no",
+      "Email": "info@festportalen.no",
+      "Information": "Information",
+      "PrivacyStatement": "Privacy statement",
+      "PrivacyPolicy": "Privacy policy",
+      "Copyright": "© Copyright 2021 - 2024 Festportalen. All rights reserved"
+    }
+  },
+  "Views": {
+    "HomePage": {
+      "HeroText": "Something for every occasion!"
+    }
+  }
+}

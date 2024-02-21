@@ -4,16 +4,18 @@ import { MenuItemLink } from "../components/shared/navbar/renderMenu.tsx";
 import {Outlet} from "react-router-dom";
 
 
-const pages: MenuItemLink[] = [
-  { link: "home", text: "Home" },
-  { link: "pricing", text: "Pricing" },
-  { link: "blog", text: "Blog" },
+const linkItems: MenuItemLink[] = [
+    {link: 'Routes.Home', text: 'Layout.TopBar.Home'},
+    {link: 'Routes.Advertise', text: 'Layout.TopBar.Advertise'},
+    {link: 'Routes.Contact', text: 'Layout.TopBar.Contact'},
+    {link: 'Routes.Login', text: 'Layout.TopBar.Login'},
+    {link: 'Routes.Login', text: 'Layout.TopBar.Login'}
 ];
 
 const PrivateLayout: React.FC = () => {
     return (
         <div>
-            <Navbar pages={pages} />
+            <Navbar linkItems={linkItems} />
             <Outlet/>
         </div>
     );

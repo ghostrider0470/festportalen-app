@@ -28,7 +28,7 @@ const logoProps = {
 };
 
 export interface NavbarProps {
-    pages: MenuItemLink[];
+    linkItems: MenuItemLink[];
 
 }
 
@@ -42,10 +42,10 @@ const Navbar: React.FC<NavbarProps> = (props) => {
                     {/*LOGO*/}
                     <NavbarLogo logoProps={logoProps}/>
 
-                    <MobileNavbar pages={props.pages}/>
+                    <MobileNavbar items={props.linkItems}/>
 
                     <Box sx={{ml: 5, flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                        <NavItems items={props.pages}/>
+                        <NavItems items={props.linkItems}/>
                     </Box>
                     {isAuth && <ProfileMenu/>}
                     {/*<ProfileMenu/>*/}

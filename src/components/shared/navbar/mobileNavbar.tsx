@@ -6,7 +6,7 @@ import {MenuItemLink, MenuItems} from "./renderMenu.tsx";
 
 
 interface MobileNavbarProps {
-    pages: MenuItemLink[];
+    items: MenuItemLink[];
 }
 
 const MobileNavbar: React.FC<MobileNavbarProps> = (props) => {
@@ -81,7 +81,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = (props) => {
                               }
                           }}>
                         <MenuItems
-                            items={props.pages}
+                            items={props.items}
                             handleClose={handleCloseNavMenu}
                         />
                     </Menu>
