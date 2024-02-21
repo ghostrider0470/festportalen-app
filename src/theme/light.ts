@@ -24,7 +24,7 @@ const LIGHT_THEME = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "rgba(0, 0, 0, 1)",
+          backgroundColor: "rgba(0, 0, 0, 0.9)",
           // color: 'rgba(0, 0, 0, 0.9)',
         },
       },
@@ -33,7 +33,7 @@ const LIGHT_THEME = createTheme({
   palette: {
     mode: "light",
     background: {
-      default: "#FFFFFF",
+      default: "#4e4635",
       paper: "#f5f5f5",
     },
     primary: {
