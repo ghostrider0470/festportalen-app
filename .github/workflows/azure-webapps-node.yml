@@ -37,9 +37,8 @@ jobs:
 
       - name: Install dependencies, build, and test
         run: |
-          npm i pnpm -g
-          pnpm install
-          pnpm build --if-present
+          npm install
+          npm build --if-present
         # pnpm run test --if-present
         # Other scripts if configured should be added here, such as linting, formating
 
