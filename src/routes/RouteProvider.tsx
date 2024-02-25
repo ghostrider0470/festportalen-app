@@ -5,7 +5,8 @@ import PublicLayout from "../layout/PublicLayout.tsx";
 import LoginPage from "../view/LoginPage/LoginPage.tsx";
 import HomePage from "../view/HomePage/HomePage.tsx";
 import PrivateLayout from "../layout/PrivateLayout.tsx";
-import i18next from "../i18next.ts";
+// import i18next from "../i18next.ts";
+import ListingsPage from "../view/ListingsPage/ListingsPage.tsx";
 
 
 
@@ -23,8 +24,9 @@ const RouteProvider: React.FC = () => {
             path: "/",
             element: <PrivateLayout/>,
             children: [
-                {path: i18next.t(('Routes.Home')), element: <HomePage/>, index: true},
-                {path: i18next.t(('Routes.Login')), element: <LoginPage/>},
+                {path: '/home', element: <HomePage/>, index: true},
+                {path: '/login', element: <LoginPage/>},
+                {path: '/listings', element: <ListingsPage/>},
             ],
         },
 
@@ -35,8 +37,9 @@ const RouteProvider: React.FC = () => {
             path: "/",
             element: <PublicLayout/>,
             children: [
-                {path: i18next.t(('Routes.Home')), element: <HomePage/>, index: true},
-                {path: i18next.t(('Routes.Login')), element: <LoginPage/>},
+                {path: '/home', element: <HomePage/>, index: true},
+                {path: '/login', element: <LoginPage/>},
+                {path: '/listings', element: <ListingsPage/>},
             ],
         },
     ]);

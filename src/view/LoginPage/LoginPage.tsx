@@ -24,7 +24,6 @@ import i18next from "../../i18next.ts";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -32,7 +31,7 @@ const LoginPage = () => {
   const handleLogin = async (e: any) => {
     e.preventDefault();
 
-    const response = await axios.post<AuthRequest, any>('http://localhost:5272/api/auth/login', {
+    const response = await axios.post<AuthRequest, any>(`https://festportalen-api.azurewebsites.net/api/auth/login`, {
       email,
       password,
       rememberMe
