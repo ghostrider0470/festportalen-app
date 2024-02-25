@@ -55,4 +55,4 @@ jobs:
           app-name: 'festportalen-app'
           slot-name: 'Production'
           package: .
-          publish-profile: $
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B578E39B87B04A8D8360D71781994FB4 }}
