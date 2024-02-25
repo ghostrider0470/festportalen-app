@@ -31,7 +31,7 @@ const LoginPage = () => {
   const handleLogin = async (e: any) => {
     e.preventDefault();
 
-    const response = await axios.post<AuthRequest, any>(`https://festportalen-api.azurewebsites.net/api/auth/login`, {
+    const response = await axios.post<AuthRequest, any>(`http://localhost:5272/api/auth/login`, {
       email,
       password,
       rememberMe

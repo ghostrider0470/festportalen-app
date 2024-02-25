@@ -68,7 +68,7 @@ export const initialListingState: ListingState = {
 export const fetchListings = createAsyncThunk('listing/fetchListings', async (request: ListingRequest) => {
     const response = await axios.post<ListingRequest, {
         data: ListingState
-    }>('https://festportalen-api.azurewebsites.net/api/Search/search-by', request);
+    }>('http://localhost:5272/api/Search/search-by', request);
     return response.data;
 });
 
