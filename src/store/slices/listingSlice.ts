@@ -2,7 +2,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
 
-
 export interface ListingRequest {
     category: string;
     subCategories: string[];
@@ -68,7 +67,7 @@ export const initialListingState: ListingState = {
 export const fetchListings = createAsyncThunk('listing/fetchListings', async (request: ListingRequest) => {
     const response = await axios.post<ListingRequest, {
         data: ListingState
-    }>('http://localhost:5272/api/Search/search-by', request);
+    }>(`${import.meta.env.VITE_API_URL}/listing/search-by`, request);
     return response.data;
 });
 

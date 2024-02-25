@@ -1,5 +1,5 @@
-import {useEffect} from "react";
-import {Grid} from "@mui/material";
+import React, {useEffect} from "react";
+import {Box, Container, Grid, Typography} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "src/store/store";
 import {fetchListings, initialListingState, Listing} from "../../store/slices/listingSlice.ts";
@@ -27,15 +27,14 @@ const ListingsPage = () => {
     }
 
     const ItemList = ({items}: { items: Listing[] }) => {
-        return (
-            <div>
-                <Grid container spacing={2}>
-                    {items.map((item) => (<Grid key={item.guid} item xs={12} sm={6} md={4}>
-                        <ListingItem {...item}/>
-                    </Grid>))}
-                </Grid>
-            </div>
-        );
+        return (<div>
+            <Grid container spacing={2}>
+                {items.map((item) => (<Grid key={item.guid} item xs={12} sm={6} md={4}>
+                    <ListingItem {...item}/>
+                </Grid>))}
+            </Grid>
+
+        </div>);
 
     }
 
@@ -47,11 +46,25 @@ const ListingsPage = () => {
 //     console.log('listings:', listings)
 // }, [listings]);
 
-    return (<div>
-        <h1>Advertisements</h1>
-        ads: {listings?.resultCount}
-    <ItemList items={listings?.resultList || []}/>
-</div>);
-}
-
+    return (
+        <Box bgcolor="white">
+            <Container>
+                <Grid container spacing={2}>
+                    {/* Sidebar or Drawer */}
+                    <Grid item xs={12} sm={4} md={3}>
+                        <Box sx={{padding: 2, height: '100vh', width: '20%'}}>
+                            <Typography variant="h6" gutterBottom>
+                                Filters
+                            </Typography>
+                            {/* Add your filter options here */}
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} sm={8} md={9}>
+                        <ItemList items={listings?.resultList || []}/>
+                    </Grid>
+                </Grid>
+            </Container>
+        </Box>
+    );
+};
 export default ListingsPage;
