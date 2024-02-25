@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import {Grid} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "src/store/store";
-import {fetchListings, initialListingState, Listing, ListingState} from "../../store/slices/listingSlice.ts";
+import {fetchListings, initialListingState, Listing} from "../../store/slices/listingSlice.ts";
 import ListingItem from "../../components/ListingItem.tsx";
 
 
