@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {createBrowserRouter, HashRouter, RouterProvider,} from "react-router-dom";
+import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import {useAuth, useIsAuthenticated} from "../hooks/auth.ts";
 import PublicLayout from "../layout/PublicLayout.tsx";
 import LoginPage from "../view/LoginPage/LoginPage.tsx";
@@ -7,6 +7,7 @@ import HomePage from "../view/HomePage/HomePage.tsx";
 import PrivateLayout from "../layout/PrivateLayout.tsx";
 // import i18next from "../i18next.ts";
 import ListingsPage from "../view/ListingsPage/ListingsPage.tsx";
+
 
 
 const RouteProvider: React.FC = () => {
@@ -50,9 +51,7 @@ const RouteProvider: React.FC = () => {
 
     return (
         <>
-            <HashRouter>
-                <RouterProvider router={router}/>
-            </HashRouter>
+            <RouterProvider router={router}/>
         </>
     );
 }
