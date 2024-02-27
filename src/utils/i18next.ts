@@ -1,7 +1,7 @@
 import i18next from 'i18next';
-import ns1_en from '../public/locales/en/ns1.json';
-import ns1_no from '../public/locales/no/ns1.json';
-import enFallback from '../public/locales/en/fallback.json';
+import ns1_en from '../../public/locales/en/ns1.json';
+import ns1_no from '../../public/locales/no/ns1.json';
+import enFallback from '../../public/locales/en/fallback.json';
 // import LanguageDetector from 'i18next-browser-languagedetector';
 
 export const defaultNS = 'ns1';

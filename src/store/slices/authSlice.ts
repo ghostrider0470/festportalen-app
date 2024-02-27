@@ -1,5 +1,8 @@
 // src/store/slices/authSlice.ts
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import axios from '../../utils/axios';
+import {AxiosResponse} from "axios";
+import {persistAuthState, resetAuthState} from "../../hooks/auth.ts";
 
 
 export interface AuthRequest {
@@ -14,43 +17,53 @@ export interface AuthState {
     user: User | null;
 }
 
-interface User {
-    name: string;
+export interface User {
+    userId: string;
+    personId: number;
     email: string;
+    firstName: string;
+    lastName: string;
+    profileImage: string;
 }
 
-const initialAuthState: AuthState = {
-    succeeded: false,
-    token: null,
-    user: null,
+export const initialAuthState: AuthState = {
+    succeeded: false, token: null, user: null,
 };
 
-const persistAuthState = (state: AuthState) => {
-    sessionStorage.setItem('auth', JSON.stringify(state));
-}
 
-const resetAuthState = () => {
-    return initialAuthState;
-};
+export const loginAsync = createAsyncThunk('auth/loginAsync', async (authRequest: AuthRequest) => {
+    const response = await axios.post<AuthRequest, AxiosResponse<AuthState>>(`${import.meta.env.VITE_API_URL}/auth/login`, authRequest);
+    return response.data as AuthState;
+});
+export const getMe = createAsyncThunk('auth/getMe', async () => {
+    const response = await axios.get<AuthRequest, AxiosResponse<User>>(`${import.meta.env.VITE_API_URL}/users/me`);
+    return response.data as User;
+});
 
 export const authSlice = createSlice({
-    name: 'auth',
-    initialState: initialAuthState,
-    reducers: {
-        login: (state, action: PayloadAction<AuthState>) => {
-            state.succeeded = action.payload.succeeded;
-            state.token = action.payload.token;
-            persistAuthState(state);
-            window.location.href = '/';
-        },
+    name: 'auth', initialState: initialAuthState, reducers: {
         logout: (state) => {
             state = resetAuthState();
             persistAuthState(state);
             window.location.href = '/';
-        },
+        }
+    }, extraReducers: (builder) => {
+        builder
+            .addCase(loginAsync.fulfilled, (state, action) => {
+                state.succeeded = action.payload.succeeded;
+                state.token = action.payload.token;
+                state.user = action.payload.user;
+                persistAuthState(state);
+            })
+            .addCase(getMe.fulfilled, (state, action) => {
+                state.user = action.payload;
+                persistAuthState(state);
+                // console.log(state);
+                // window.location.href = '/';
+            });
     }
 });
 
 export default authSlice;
 
-export const {login, logout} = authSlice.actions;
+export const {logout} = authSlice.actions;

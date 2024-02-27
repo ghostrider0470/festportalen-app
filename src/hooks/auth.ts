@@ -1,13 +1,13 @@
 import {useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-import {AuthState, logout} from '../store/slices/authSlice';
+import {AuthState, initialAuthState, logout} from '../store/slices/authSlice';
 
 
 /**
  * Hook to detect is current user authenticated or not
  * @returns {boolean} true if user is authenticated, false otherwise
  */
-export function useIsAuthenticated(): boolean {
+export const useIsAuthenticated = (): boolean => {
     const auth = sessionStorage.getItem('auth') ? JSON.parse(sessionStorage.getItem('auth') as string) : {
         succeeded: false,
         token: null,
@@ -24,6 +24,13 @@ export function useAuth(): AuthState {
     };
 }
 
+export const persistAuthState = (state: AuthState) => {
+    sessionStorage.setItem('auth', JSON.stringify(state));
+}
+
+export const resetAuthState = () => {
+    return initialAuthState;
+};
 /**
  * Returns event handler to Logout current user
  * @returns {function} calling this event logs out current user

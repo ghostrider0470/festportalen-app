@@ -1,6 +1,6 @@
 import {Button, Link, MenuItem, SxProps, Typography} from "@mui/material";
 import * as React from "react";
-import i18next from '../../../i18next.ts';
+import i18next from '../../../utils/i18next.ts';
 
 export interface MenuItemLink {
     link: string;
