@@ -40,7 +40,8 @@ const Navbar: React.FC<NavbarProps> = (props) => {
                 <Box sx={{ml: 5, flexGrow: 1, display: {xs: "none", md: "flex"}}}>
                     <NavItems items={props.linkItems}/>
                 </Box>
-                {isAuth && <Stack direction='row' sx={{justifyContent: "center", alignItems: "center"}} spacing={2}>
+                {isAuth &&
+                    <Stack direction='row' sx={{justifyContent: "center", alignItems: "center"}} spacing={4}>
                     <Typography variant='h6'>Welcome {auth.user?.firstName}</Typography>
                     <ProfileMenu/>
                 </Stack>}
