@@ -18,6 +18,7 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true
   },
+  "noImplicitAny": false,
   "include": ["src/**/*.ts", "src/**/*.tsx", ".env"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
