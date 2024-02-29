@@ -22,6 +22,7 @@ const ListingsPage = () => {
             pageSize: 0,
             sortBy: "string"
         }
+        // @ts-ignore
         dispatch(fetchListings(request));
     }
 
