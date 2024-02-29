@@ -9,7 +9,6 @@ import PrivateLayout from "../layout/PrivateLayout.tsx";
 import ListingsPage from "../view/ListingsPage/ListingsPage.tsx";
 
 
-
 const RouteProvider: React.FC = () => {
     const auth = useAuth();
     // // Define private routes for authenticated users
@@ -24,7 +23,7 @@ const RouteProvider: React.FC = () => {
             path: "/",
             element: <PrivateLayout/>,
             children: [
-                {path: '/home', element: <HomePage/>, index: true},
+                {path: '/', element: <HomePage/>, index: true},
                 {path: '/login', element: <LoginPage/>},
                 {path: '/listings', element: <ListingsPage/>},
             ],
@@ -37,7 +36,7 @@ const RouteProvider: React.FC = () => {
             path: "/",
             element: <PublicLayout/>,
             children: [
-                {path: '/home', element: <HomePage/>, index: true},
+                {path: '/', element: <HomePage/>, index: true},
                 {path: '/login', element: <LoginPage/>},
                 {path: '/listings', element: <ListingsPage/>},
             ],

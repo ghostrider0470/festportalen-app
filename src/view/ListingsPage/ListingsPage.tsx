@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "src/store/store";
 import {fetchListings, initialListingState, Listing} from "../../store/slices/listingSlice.ts";
 import ListingItem from "../../components/ListingItem.tsx";
+import FilterSidebar from "../../components/FilterSidebar.tsx";
 
 
 const ListingsPage = () => {
@@ -54,7 +55,7 @@ const ListingsPage = () => {
                     <Grid item xs={12} sm={4} md={3}>
                         <Box sx={{padding: 2, height: '100vh', width: '20%'}}>
                             <Typography variant="h6" gutterBottom>
-                                Filters
+                                <FilterSidebar/>
                             </Typography>
                             {/* Add your filter options here */}
                         </Box>
