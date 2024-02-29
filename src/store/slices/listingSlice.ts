@@ -88,7 +88,6 @@ export const listingSlice = createSlice({
                 state.page = action.payload.page;
                 state.totalPages = action.payload.totalPages;
             })
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             .addCase(fetchListings.rejected, (state) => {
                 // Optionally, you can handle the error state here
                 console.log(state)

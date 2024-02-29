@@ -16,9 +16,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false
   },
-  "noImplicitAny": false,
   "include": ["src/**/*.ts", "src/**/*.tsx", ".env"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

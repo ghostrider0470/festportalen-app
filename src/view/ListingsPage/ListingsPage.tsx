@@ -9,7 +9,6 @@ import FilterSidebar from "../../components/FilterSidebar.tsx";
 
 const ListingsPage = () => {
     const dispatch = useDispatch();
-    // const [listings, setListings] = useState<ListingState[] | undefined>(undefined);
     const listings = useSelector((state: RootState) => state.listing);
 
     const getListings = () => {
@@ -23,7 +22,6 @@ const ListingsPage = () => {
             pageSize: 0,
             sortBy: "string"
         }
-        // @ts-ignore
         dispatch(fetchListings(request));
     }
 
@@ -41,23 +39,21 @@ const ListingsPage = () => {
 
 
     useEffect(() => {
-        getListings();
-    }, [listings === initialListingState]);
-// useEffect(() => {
-//     console.log('listings:', listings)
-// }, [listings]);
+        if (listings === initialListingState) {
+            getListings();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [listings]);
 
     return (
         <Box bgcolor="white">
             <Container>
                 <Grid container spacing={2}>
-                    {/* Sidebar or Drawer */}
                     <Grid item xs={12} sm={4} md={3}>
                         <Box sx={{padding: 2, height: '100vh', width: '20%'}}>
                             <Typography variant="h6" gutterBottom>
                                 <FilterSidebar/>
                             </Typography>
-                            {/* Add your filter options here */}
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={8} md={9}>
