@@ -1,30 +1,22 @@
 import {useEffect} from "react";
 import {Box, Container, Grid, Typography} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "src/store/store";
-import {fetchListings, initialListingState, Listing} from "../../store/slices/listingSlice.ts";
+import {AppDispatch, RootState} from "src/store/store";
+import {fetchListings, Listing} from "../../store/slices/listingSlice.ts";
 import ListingItem from "../../components/ListingItem.tsx";
 import FilterSidebar from "../../components/FilterSidebar.tsx";
 
 
 const ListingsPage = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const listings = useSelector((state: RootState) => state.listing);
+    const filter = useSelector((state: RootState) => state.filter);
 
-    const getListings = () => {
-        const request = {
-            category: "Foto og Video",
-            subCategories: ["string"],
-            regions: ["string"],
-            counties: ["string"],
-            keyword: ["string"],
-            page: 0,
-            pageSize: 0,
-            sortBy: "string"
-        }
-        // @ts-ignore
-        dispatch(fetchListings(request));
-    }
+    // const getListings = () => {
+
+    //     // @ts-ignore
+    //     dispatch(fetchListings(request));
+    // }
 
     const ItemList = ({items}: { items: Listing[] }) => {
         return (<div>
@@ -40,11 +32,21 @@ const ListingsPage = () => {
 
 
     useEffect(() => {
-        if (listings === initialListingState) {
-            getListings();
+
+        const request = {
+            category: filter.category,
+            subCategories: ["string"],
+            regions: ["string"],
+            counties: ["string"],
+            keyword: ["string"],
+            page: 0,
+            pageSize: 0,
+            sortBy: "string"
         }
+
+        dispatch(fetchListings(request));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [listings]);
+    }, [filter]);
 
     return (
         <Box bgcolor="white">

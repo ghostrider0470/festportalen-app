@@ -1,7 +1,6 @@
 // src/store/slices/authSlice.ts
 import {createSlice} from '@reduxjs/toolkit';
 
-
 interface FilterState {
     keyword: string;
     category: string;
@@ -37,6 +36,10 @@ export const filterSlice = createSlice({
         },
         updateSubCategories: (state, action) => {
             state.subCategories = action.payload;
+        },
+        updateCountiesAndRegions: (state, action: { payload: { counties: string[], regions: string[] } }) => {
+            state.regions = action.payload.regions;
+            state.counties = action.payload.counties;
         },
         updateRegions: (state, action) => {
             state.regions = action.payload;
