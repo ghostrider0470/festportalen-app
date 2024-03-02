@@ -5,6 +5,7 @@ import {authSlice} from "./slices/authSlice.ts";
 import {listingSlice} from "./slices/listingSlice.ts";
 import {filterSlice} from "./slices/filterSlice.ts";
 import {locationsSlice} from "./slices/locationsSlice.ts";
+import {categoriesSlice} from "./slices/categoriesSlice.ts";
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
         listing: listingSlice.reducer,
         filter: filterSlice.reducer,
         locations: locationsSlice.reducer,
+        categories: categoriesSlice.reducer,
     },
 });
 // Infer the `RootState` and `AppDispatch` types from the store itself

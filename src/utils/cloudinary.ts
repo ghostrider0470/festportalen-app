@@ -1,13 +1,18 @@
 // Create a Cloudinary instance and set your cloud name.
 import {Cloudinary} from "@cloudinary/url-gen";
+import {limitPad} from "@cloudinary/url-gen/actions/resize";
 
 const cld = new Cloudinary({
     cloud: {
 
         cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
         apiKey: import.meta.env.VITE_CLOUDINARY_API_KEY,
-        apiSecret: import.meta.env.VITE_CLOUDINARY_API_SECRET
-    }
+        apiSecret: import.meta.env.VITE_CLOUDINARY_API_SECRET,
+    },
+    url: {
+        secure: true,
+    },
+
 });
 export const getImgUrl = (item: string | undefined | null) => {
     if (item === undefined || item === null) {
@@ -25,4 +30,18 @@ export const getImgUrl = (item: string | undefined | null) => {
         .quality('auto')
         .toURL();
 }
+export const getImgUrlFrom = (publicId: string | undefined | null) => {
+    console.log(publicId);
+    if (publicId === undefined || publicId === null) {
+        return 'https://placehold.co/600x400';
+    }
+    return cld.image(publicId)
+        .resize(limitPad()
+            .width(70)
+            .height(70))
+        .format('webp')
+
+        .quality('auto').toURL();
+}
+
 export default cld;
