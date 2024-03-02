@@ -1,14 +1,15 @@
 import {Avatar, Box, IconButton, Menu, MenuItem, Tooltip, Typography} from "@mui/material";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 import {logout} from "../../../store/slices/authSlice";
-import {AppDispatch, RootState} from "../../../store/store.ts";
+import {AppDispatch} from "../../../store/store.ts";
+import {useAuth} from "../../../hooks/auth.ts";
 
 
 export const ProfileMenu: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const auth = useSelector((state: RootState) => state.auth);
+    const auth = useAuth();
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const settings: { name: string, action: () => void }[] = [{
         name: 'Profile', action: () => {
@@ -45,6 +46,7 @@ export const ProfileMenu: React.FC = () => {
         <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
                 <Avatar alt={auth.user?.firstName}
+                    // TODO: Uploads to Cloudinary, and get this link fixed
                         src={`https://dev.festportalen.no/Uploads/Person/${auth.user?.personId}/Profile/${auth.user?.profileImage}`}/>
             </IconButton>
         </Tooltip>

@@ -21,7 +21,9 @@ export const getMe = createAsyncThunk('auth/getMe', async () => {
 });
 
 export const authSlice = createSlice({
-    name: 'auth', initialState: initialAuthState, reducers: {
+    name: 'auth',
+    initialState: initialAuthState,
+    reducers: {
         logout: (state) => {
             state = resetAuthState();
             persistAuthState(state);
