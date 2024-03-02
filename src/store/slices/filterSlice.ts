@@ -1,20 +1,11 @@
 // src/store/slices/authSlice.ts
 import {createSlice} from '@reduxjs/toolkit';
+import {FilterState} from "../interfaces/filter.ts";
 
-interface FilterState {
-    keyword: string;
-    category: string;
-    subCategories: string[];
-    regions: string[];
-    counties: string[];
-    page: number;
-    pageSize: number;
-    sortBy: string;
-}
 
 const initialState: FilterState = {
     keyword: '',
-    category: '',
+    categoryId: '',
     subCategories: [],
     regions: [],
     counties: [],
@@ -28,11 +19,15 @@ export const filterSlice = createSlice({
     name: 'filter',
     initialState: initialState,
     reducers: {
+        setFilter: (state, action) => {
+            console.log("Setting filter", state, action.payload)
+            state = action.payload;
+        },
         updateKeyword: (state, action) => {
             state.keyword = action.payload;
         },
         updateCategory: (state, action) => {
-            state.category = action.payload;
+            state.categoryId = action.payload;
         },
         updateSubCategories: (state, action) => {
             state.subCategories = action.payload;

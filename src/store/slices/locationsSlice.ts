@@ -1,22 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import axios from "axios";
+import {County, LocationsState, Region} from "../interfaces/locations.ts";
 
-export interface Region {
-    regionId: number;
-    regionName: string;
-    counties: County[];
-    isSelected: boolean;
-}
-
-export interface County {
-    countyId: number;
-    countyName: string;
-    isSelected: boolean;
-}
-
-export interface LocationsState {
-    locations: Region[];
-}
 
 export const initialState: LocationsState = {
     locations: [],

@@ -1,8 +1,9 @@
 import {Box, Checkbox, FormControlLabel, Typography} from "@mui/material";
-import {useEffect} from "react";
-import {locationsActions} from "../store/slices/locationsSlice.ts";
+import {useEffect, useState} from "react";
+import {getLocations, locationsActions} from "../store/slices/locationsSlice.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../store/store.ts";
+import Input from "@mui/material/Input";
 // import {filterActions} from "../store/slices/filterSlice.ts";
 
 const FilterSidebar = () => {
@@ -10,14 +11,15 @@ const FilterSidebar = () => {
     const locations = useSelector((state: RootState) => state.locations.locations);
     const filter = useSelector((state: RootState) => state.filter);
     const dispatch = useDispatch<AppDispatch>();
-
+    const [searchTerm, setSearchTerm] = useState('');
     const handleRegionChange = (locationId: number) => {
+        console.log(searchTerm)
         dispatch(locationsActions.checkLocation(locationId));
     };
 
-    const handleCountyChange = (locationId: number, countyId: number) => {
-        dispatch(locationsActions.checkCounty({locationId, countyId}));
-    };
+    // const handleCountyChange = (locationId: number, countyId: number) => {
+    //     dispatch(locationsActions.checkCounty({locationId, countyId}));
+    // };
     useEffect(() => {
         const selectedRegions: string[] = [];
         const selectedCounties: string[] = [];
@@ -38,11 +40,15 @@ const FilterSidebar = () => {
     }, [locations]);
 
     useEffect(() => {
-        // dispatch(getLocations());
+        dispatch(getLocations());
     }, []);
 
     return (
-        <Box sx={{width: '50%'}}>
+        <Box>
+            <Input
+                placeholder="Search..."
+                onChange={event => setSearchTerm(event.target.value)}
+            />
             <Typography variant='h5'>Locations</Typography>
             {locations.map((region, index) => (
                 <div key={index}>
@@ -61,7 +67,7 @@ const FilterSidebar = () => {
                                 <FormControlLabel
                                     control={
                                         <Checkbox
-                                            onChange={() => handleCountyChange(region.regionId, county.countyId)}
+                                            // onChange={() => handleCountyChange(region.regionId, county.countyId)}
                                             // checked={isRegionChecked(county.countyId)}
                                         />
                                     }

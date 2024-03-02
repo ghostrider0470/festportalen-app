@@ -1,6 +1,7 @@
 import {useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-import {AuthState, initialAuthState, logout} from '../store/slices/authSlice';
+import {initialAuthState, logout} from '../store/slices/authSlice';
+import {AuthState} from "../store/interfaces/auth.ts";
 
 
 /**
@@ -31,6 +32,7 @@ export const persistAuthState = (state: AuthState) => {
 export const resetAuthState = () => {
     return initialAuthState;
 };
+
 /**
  * Returns event handler to Logout current user
  * @returns {function} calling this event logs out current user

@@ -3,28 +3,8 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from '../../utils/axios';
 import {AxiosResponse} from "axios";
 import {persistAuthState, resetAuthState} from "../../hooks/auth.ts";
+import {AuthRequest, AuthState, User} from "../interfaces/auth.ts";
 
-
-export interface AuthRequest {
-    email: string;
-    password: string;
-    rememberMe: boolean;
-}
-
-export interface AuthState {
-    succeeded: boolean;
-    token: string | null;
-    user: User | null;
-}
-
-export interface User {
-    userId: string;
-    personId: number;
-    email: string;
-    firstName: string;
-    lastName: string;
-    profileImage: string;
-}
 
 export const initialAuthState: AuthState = {
     succeeded: false, token: null, user: null,
