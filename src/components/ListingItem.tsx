@@ -1,8 +1,8 @@
-import {Listing} from "../store/slices/listingSlice.ts";
 import React from "react";
 import {Card, CardActions, CardContent, CardMedia, Rating, Stack, Typography} from "@mui/material";
 import {getImgUrl} from "../utils/cloudinary.ts";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import {Listing} from "../store/interfaces/listing.ts";
 
 const ListingItem: React.FC<Listing> = (item: Listing) => {
     const shortenDescription = (description: string | undefined): string => {
