@@ -5,8 +5,8 @@ import {AppDispatch, RootState} from "src/store/store";
 import {fetchListings} from "../../store/slices/listingSlice.ts";
 import ListingItem from "../../components/ListingItem.tsx";
 import FilterSidebar from "../../components/FilterSidebar.tsx";
-import {FilterState} from "../../store/interfaces/filter.ts";
 import {Listing} from "../../store/interfaces/listing.ts";
+import {filterActions} from "../../store/slices/filterSlice.ts";
 
 
 const ListingsPage = () => {
@@ -14,32 +14,27 @@ const ListingsPage = () => {
     const dispatch = useDispatch<AppDispatch>();
     const listings = useSelector((state: RootState) => state.listing);
     const filter = useSelector((state: RootState) => state.filter);
-    console.log(listings)
     useEffect(() => {
         if (initialized) {
             // Get the current URL
-            const currentURL = window.location.href;
-            console.log("Current URL:", currentURL);
+            // const currentURL = window.location.href;
+            // console.log("Current URL:", currentURL);
             // Get the search parameters from the URL
-            const searchParams = new URLSearchParams(window.location.search);
 
-            const request: FilterState = {
-                categoryId: searchParams.get("category"),
-                subCategories: ["string"],
-                regions: ["string"],
-                counties: ["string"],
-                keyword: searchParams.get("keyword"),
-                page: 0,
-                pageSize: 0,
-                sortBy: "string"
-            };
-            // dispatch(filterActions.setFilter(request));
-            dispatch(fetchListings(request));
+            // dispatch(fetchListings(filter));
         } else {
             setInitialized(true);
 
+            dispatch(filterActions.setFilterBasedOnUrl());
+            // dispatch(filterActions.setFilter(request));
+            //
         }
-    }, [dispatch, initialized, filter]);
+    }, [dispatch, initialized]);
+
+    useEffect(() => {
+        // console.log("Filter check", filter);
+        dispatch(fetchListings(filter));
+    }, [dispatch, filter]);
 
 
     const ItemList = ({items}: { items: Listing[] }) => {
@@ -53,24 +48,6 @@ const ListingsPage = () => {
         </div>);
 
     }
-
-    //
-    // useEffect(() => {
-    //
-    //     const request = {
-    //         category: filter.category,
-    //         subCategories: ["string"],
-    //         regions: ["string"],
-    //         counties: ["string"],
-    //         keyword: ["string"],
-    //         page: 0,
-    //         pageSize: 0,
-    //         sortBy: "string"
-    //     }
-    //
-    //
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [filter]);
 
     return (
         <Box bgcolor="white">

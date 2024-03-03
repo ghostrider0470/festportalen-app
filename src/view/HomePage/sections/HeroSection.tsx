@@ -10,6 +10,8 @@ import {limitPad} from "@cloudinary/url-gen/actions/resize";
 import {compass} from "@cloudinary/url-gen/qualifiers/gravity";
 import {Category} from "../../../store/interfaces/categories.ts";
 import {getMainCategories} from "../../../store/slices/categoriesSlice.ts";
+import {filterActions, setUrlBasedOnFilter} from "../../../store/slices/filterSlice.ts";
+import {FilterState} from "../../../store/interfaces/filter.ts";
 
 
 const HeroSection = () => {
@@ -41,7 +43,20 @@ const HeroSection = () => {
     }, [debouncedSearchTerm]);
 
     const handleCardClick = (category: Category) => {
-        navigate(`/listings?category=${category.categoryId}&keyword=${debouncedSearchTerm}`);
+        const filter: FilterState = {
+            categoryId: category.categoryId.toString(),
+            subCategories: [],
+            regions: [],
+            counties: [],
+            keyword: debouncedSearchTerm,
+            page: 0,
+            pageSize: 0,
+            sortBy: ""
+        };
+        dispatch(filterActions.setFilter(filter));
+        navigate(setUrlBasedOnFilter(filter, '/listings'));
+        // navigate(`/listings?category=${category.categoryId}&keyword=${debouncedSearchTerm}`);
+        // navigate(`/listings?category=${category.categoryId}&keyword=${debouncedSearchTerm}`);
     }
 
     const CategoryCard = ({category}) => {

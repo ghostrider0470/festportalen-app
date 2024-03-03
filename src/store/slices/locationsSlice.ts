@@ -17,12 +17,10 @@ export const locationsSlice = createSlice({
     initialState: initialState,
     reducers: {
         checkLocation: (state, action: PayloadAction<number>) => {
-            state.locations.forEach((region) => {
-                if (region.regionId === action.payload) {
-                    region.isSelected = !region.isSelected;
-                }
-
-            });
+            const region = state.locations.find((region) => region.regionId === action.payload);
+            if (region) {
+                region.isSelected = !region.isSelected;
+            }
         },
         checkCounty: (state, action: PayloadAction<{ locationId: number, countyId: number }>) => {
             state.locations.forEach((region) => {
