@@ -21,6 +21,7 @@ export const filterSlice = createSlice({
     reducers: {
         setFilterBasedOnUrl: (state) => {
             const searchParams = new URLSearchParams(window.location.search);
+            // @ts-ignore
             const regions = searchParams.get("regions") ? searchParams.get("regions").split(",") : [];
 
             const filter: FilterState = {
@@ -92,6 +93,7 @@ export const setUrlBasedOnFilter = (filter: FilterState, path?: string) => {
         if (Array.isArray(value)) {
             searchParams.set(key, value.join(","));
         } else {
+            // @ts-ignore
             searchParams.set(key, value.toString());
         }
     }

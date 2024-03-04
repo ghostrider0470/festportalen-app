@@ -61,7 +61,7 @@ const HeroSection = () => {
 
     const CategoryCard = ({category}) => {
         return (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={category.id}>
+            <Grid item xs={4} sm={4} md={4} lg={3} key={category.id}>
                 <Card sx={{height: 200, backgroundColor: 'transparent', boxShadow: 'none'}}>
                     <CardActionArea
                         sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
