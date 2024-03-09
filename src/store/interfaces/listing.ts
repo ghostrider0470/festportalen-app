@@ -23,8 +23,16 @@ export interface ListingItem {
     title: string;
     description: string;
     companyPhoto: string;
-    website: string;
+    links: Links;
     tags: string[];
+}
+
+export interface Links {
+    facebook: string;
+    instagram: string;
+    linkedin: string;
+    twitter: string;
+    website: string;
 
 }
 

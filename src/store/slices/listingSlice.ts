@@ -60,7 +60,7 @@ export const listingSlice = createSlice({
                     title: action.payload.title,
                     companyPhoto: action.payload.companyPhoto,
                     description: action.payload.description,
-                    website: action.payload.website,
+                    links: action.payload.links,
                     tags: action.payload.tags
                 };
 
