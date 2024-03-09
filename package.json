@@ -11,7 +11,7 @@
   },
   "engines": {
     "node": ">=20.11.1",
-    "npm": ">=8.15.1"
+    "pnpm": ">=8.15.1"
   },
   "dependencies": {
     "@cloudinary/react": "^1.13.0",
