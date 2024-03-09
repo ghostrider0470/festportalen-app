@@ -1,4 +1,4 @@
-import {Box, Card, CardActionArea, CardContent, Container, Grid, Stack, Typography} from "@mui/material";
+import {Box, Card, CardActionArea, CardContent, Container, Grid, Skeleton, Stack, Typography} from "@mui/material";
 import Input from '@mui/material/Input';
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -25,8 +25,10 @@ const HeroSection = () => {
     }
 
     useEffect(() => {
-        dispatch(getMainCategories());
-        console.log(categoriesState.categories)
+        setTimeout(() => {
+            dispatch(getMainCategories());
+            console.log(categoriesState.categories)
+        }, 1000);
     }, []); // Changed dependencies to an empty array
     useEffect(() => {
         const timerId = setTimeout(() => {
@@ -58,7 +60,19 @@ const HeroSection = () => {
         // navigate(`/listings?category=${category.categoryId}&keyword=${debouncedSearchTerm}`);
         // navigate(`/listings?category=${category.categoryId}&keyword=${debouncedSearchTerm}`);
     }
-
+    const CategorySkeletons = () => {
+        return Array.from({length: 11}).map((_, i) => (
+            <React.Fragment key={i}>
+                <Grid item xs={4} sm={4} md={4} lg={3} mb={2}>
+                    <Box
+                        sx={{justifyContent: "center", display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                        <Skeleton animation="pulse" variant="rectangular" width={100} height={100}></Skeleton>
+                        <Skeleton animation="pulse" variant="text" width={180}/>
+                    </Box>
+                </Grid>
+            </React.Fragment>
+        ));
+    }
     const CategoryCard = ({category}) => {
         return (
             <Grid item xs={4} sm={4} md={4} lg={3} key={category.id}>
@@ -93,7 +107,7 @@ const HeroSection = () => {
 
     const renderCategories = () => {
         if (categoriesState.status === 'pending') {
-            return <p>Loading...</p>;
+            return CategorySkeletons();
         } else if (categoriesState.status === 'fulfilled') {
             return categoriesState.categories.map((category) => <CategoryCard category={category}/>);
         }
@@ -131,7 +145,6 @@ const HeroSection = () => {
             <Container>
                 <Grid mt={5} container spacing={2}>
                     {categoriesState && renderCategories()}
-
                 </Grid>
             </Container>
         </Stack>

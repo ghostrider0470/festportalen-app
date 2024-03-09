@@ -63,7 +63,7 @@ const LoginPage = () => {
                 }}
             >
                 <Typography component="h1" variant="h5">
-                    {i18next.t(('Views.LoginPage.Title'))}
+                    {i18next.t(('Views.Index.Title'))}
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleLogin} sx={{mt: 1, textAlign: "center"}}>
                     <TextField
@@ -71,7 +71,7 @@ const LoginPage = () => {
                         required
                         fullWidth
                         id="email"
-                        label={i18next.t(('Views.LoginPage.Email'))}
+                        label={i18next.t(('Views.Index.Email'))}
                         name="email"
                         autoComplete="email"
                         autoFocus
@@ -82,7 +82,7 @@ const LoginPage = () => {
                         required
                         fullWidth
                         name="password"
-                        label={i18next.t(('Views.LoginPage.Password'))}
+                        label={i18next.t(('Views.Index.Password'))}
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -92,10 +92,10 @@ const LoginPage = () => {
                         sx={{width: "100%"}}
                         control={<Checkbox value={rememberMe} color="primary"
                                            onChange={(e) => setRememberMe(e.target.checked)}/>}
-                        label={i18next.t(('Views.LoginPage.RememberMe'))}
+                        label={i18next.t(('Views.Index.RememberMe'))}
                     />
                     <Button type="submit" variant="contained" sx={{mb: 3}}>
-                        {i18next.t(('Views.LoginPage.SignIn'))}
+                        {i18next.t(('Views.Index.SignIn'))}
                     </Button>
                     <Divider variant="middle" sx={{color: "#e0ae55"}}>
                         OR
@@ -109,12 +109,12 @@ const LoginPage = () => {
                     >
                         <Grid item>
                             <Link href="#" variant="body2" underline="none">
-                                {i18next.t(('Views.LoginPage.ForgotPassword'))}
+                                {i18next.t(('Views.Index.ForgotPassword'))}
                             </Link>
                         </Grid>
                         <Grid item>
                             <Link href="#" variant="body2" underline="none">
-                                {i18next.t(('Views.LoginPage.SignUp'))}
+                                {i18next.t(('Views.Index.SignUp'))}
                             </Link>
                         </Grid>
                     </Grid>

@@ -1,14 +1,17 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import axios from "axios";
 import {County, LocationsState, Region} from "../interfaces/locations.ts";
+import {FilterState} from "../interfaces/filter.ts";
 
 
 export const initialState: LocationsState = {
     locations: [],
 }
 
-export const getLocations = createAsyncThunk('locations/get', async () => {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/listing/get-locations`);
+export const getLocations = createAsyncThunk('locations/get', async (request: FilterState) => {
+    const response = await axios.post<FilterState, {
+        data: Region[]
+    }>(`${import.meta.env.VITE_API_URL}/listing/get-locations`, request);
     return response.data;
 });
 

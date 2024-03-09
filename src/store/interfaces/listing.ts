@@ -10,10 +10,22 @@
 // }
 
 export interface ListingState {
+    selectedListing: ListingItem | null;
+    status: 'pending' | 'fulfilled' | 'rejected';
     resultCount: number;
     page: number;
     totalPages: number;
     resultList: Listing[];
+}
+
+export interface ListingItem {
+    coverImage: string;
+    title: string;
+    description: string;
+    companyPhoto: string;
+    website: string;
+    tags: string[];
+
 }
 
 export interface Listing {

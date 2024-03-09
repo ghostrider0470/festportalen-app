@@ -1,11 +1,12 @@
-import {Box, Checkbox, FormControlLabel, Typography} from "@mui/material";
-import {useEffect} from "react";
+import {Box, Checkbox, Collapse, FormControlLabel, List, ListItem, ListItemButton, ListSubheader} from "@mui/material";
+import React, {useEffect} from "react";
 import {getLocations} from "../store/slices/locationsSlice.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../store/store.ts";
-import Input from "@mui/material/Input";
 import {filterActions} from "../store/slices/filterSlice.ts";
-// import {filterActions} from "../store/slices/filterSlice.ts";
+import {ExpandLess, ExpandMore} from "@mui/icons-material";
+import ListItemText from "@mui/material/ListItemText";
+import Input from "@mui/material/Input";
 
 const FilterSidebar = () => {
 
@@ -32,48 +33,140 @@ const FilterSidebar = () => {
 
     useEffect(() => {
 
-        });
+    });
 
     useEffect(() => {
-        dispatch(getLocations());
+        dispatch(getLocations(filter));
         // console.log("Filter check", _regions)
     }, [dispatch]);
 
+    const [isLocationsListOpen, setLocationsListOpen] = React.useState(true);
+    const [isProductsListOpen, setIsProductsListOpen] = React.useState(true);
+    const [isServicesListOpen, setIsServicesListOpen] = React.useState(true);
+
+    const handleClickLocation = () => {
+        setLocationsListOpen(!isLocationsListOpen);
+    };
+    const handleClickProducts = () => {
+        setIsProductsListOpen(!isProductsListOpen);
+    };
+
+    const handleClickServices = () => {
+        setIsServicesListOpen(!isServicesListOpen);
+    };
+
 
     return (
-        <Box>
-            <Input
-                placeholder="Search..."
-                // onChange={event => setSearchTerm(event.target.value)}
-            />
-            <Typography variant='h5'>Locations</Typography>
-            {locations.map((region, index) => (
-                <div key={index}>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                onChange={() => handleRegionChange(region.regionId.toString())}
-                                checked={filter.regions.includes(region.regionId.toString())}
-                            />
-                        }
-                        label={region.regionName}
+        <Box mt={8}>
+            <List
+
+                sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}
+                component="nav"
+                aria-labelledby="nested-list-subheader"
+                subheader={
+                    <ListSubheader component="div" id="nested-list-subheader">
+                        Filters Menu
+                    </ListSubheader>
+                }
+            >
+                {/*<ListItemButton>*/}
+                {/*    <ListItemIcon>*/}
+                {/*        /!*<SendIcon/>*!/*/}
+                {/*    </ListItemIcon>*/}
+                {/*    <ListItemText primary="Sent mail"/>*/}
+                {/*</ListItemButton>*/}
+                {/*<ListItemButton>*/}
+                {/*    <ListItemIcon>*/}
+                {/*        /!*<DraftsIcon/>*!/*/}
+                {/*    </ListItemIcon>*/}
+                {/*    <ListItemText primary="Drafts"/>*/}
+                {/*</ListItemButton>*/}
+                <ListItem>
+                    <Input
+                        placeholder="Search..."
+                        // onChange={event => setSearchTerm(event.target.value)}
                     />
-                    {filter.regions.includes(region.regionId.toString()) &&
-                        region.counties.map((county, index) => (
-                            <div key={index} style={{marginLeft: '20px'}}>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            onChange={() => handleCountyChange(county.countyId.toString())}
-                                            checked={filter.counties.includes(county.countyId.toString())}
+                </ListItem>
+                <ListItemButton onClick={handleClickLocation}>
+                    {/*<ListItemIcon>*/}
+                    {/*    /!*<InboxIcon/>*!/*/}
+                    {/*</ListItemIcon>*/}
+                    <ListItemText primary="Locations" secondary={`Found ${locations.length - 1}`}/>
+                    {isLocationsListOpen ? <ExpandLess/> : <ExpandMore/>}
+                </ListItemButton>
+                <Collapse in={isLocationsListOpen} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                        <ListItemButton sx={{pl: 4}}>
+                            <Box>
+
+                                {/*<Typography variant='h5'>Locations</Typography>*/}
+                                {locations.map((region, index) => (
+                                    <div key={index}>
+                                        <FormControlLabel
+                                            control={
+                                                <Checkbox
+                                                    onChange={() => handleRegionChange(region.regionId.toString())}
+                                                    checked={filter.regions.includes(region.regionId.toString())}
+                                                />
+                                            }
+                                            label={region.regionName}
                                         />
-                                    }
-                                    label={county.countyName}
-                                />
-                            </div>
-                        ))}
-                </div>
-            ))}
+                                        {filter.regions.includes(region.regionId.toString()) &&
+                                            region.counties.map((county, index) => (
+                                                <div key={index} style={{marginLeft: '20px'}}>
+                                                    <FormControlLabel
+                                                        control={
+                                                            <Checkbox
+                                                                onChange={() => handleCountyChange(county.countyId.toString())}
+                                                                checked={filter.counties.includes(county.countyId.toString())}
+                                                            />
+                                                        }
+                                                        label={county.countyName}
+                                                    />
+                                                </div>
+                                            ))}
+                                    </div>
+                                ))}
+                            </Box>
+                        </ListItemButton>
+                    </List>
+                </Collapse>
+
+                <ListItemButton onClick={handleClickProducts}>
+                    {/*<ListItemIcon>*/}
+                    {/*    /!*<InboxIcon/>*!/*/}
+                    {/*</ListItemIcon>*/}
+                    <ListItemText primary="Products" secondary={`Found ${locations.length - 1}`}/>
+                    {isProductsListOpen ? <ExpandLess/> : <ExpandMore/>}
+                </ListItemButton>
+                <Collapse in={isProductsListOpen} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                        <ListItemButton sx={{pl: 4}}>
+                            <Box>
+
+                            </Box>
+                        </ListItemButton>
+                    </List>
+                </Collapse>
+
+                <ListItemButton onClick={handleClickServices}>
+                    {/*<ListItemIcon>*/}
+                    {/*    /!*<InboxIcon/>*!/*/}
+                    {/*</ListItemIcon>*/}
+                    <ListItemText primary="Services" secondary={`Found ${locations.length - 1}`}/>
+                    {isServicesListOpen ? <ExpandLess/> : <ExpandMore/>}
+                </ListItemButton>
+                <Collapse in={isServicesListOpen} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                        <ListItemButton sx={{pl: 4}}>
+                            <Box>
+
+                            </Box>
+                        </ListItemButton>
+                    </List>
+                </Collapse>
+
+            </List>
         </Box>
     );
 };
