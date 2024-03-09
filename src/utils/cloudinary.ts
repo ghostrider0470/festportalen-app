@@ -14,7 +14,7 @@ const cld = new Cloudinary({
     },
 
 });
-export const getImgUrl = (item: string | undefined | null) => {
+export const getImgUrl = (item: string | undefined | null, size?: { w: number, h: number }) => {
     if (item === undefined || item === null) {
         return 'https://placehold.co/600x400';
     }
@@ -24,6 +24,16 @@ export const getImgUrl = (item: string | undefined | null) => {
 
     // Extract the substring starting from the index after '/v1/'
     const trimmedString = item.substring(lastIndex + 4);
+
+    if (size) {
+        return cld.image(trimmedString)
+            .resize(limitPad()
+                .width(size.w)
+                .height(size.h))
+            .format('webp')
+            .quality('auto')
+            .toURL();
+    }
 
     return cld.image(trimmedString)
         .format('webp')

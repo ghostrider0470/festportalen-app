@@ -1,11 +1,13 @@
 // src/store/slices/authSlice.ts
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
-import {ListingState} from "../interfaces/listing.ts";
+import {ListingItem, ListingState} from "../interfaces/listing.ts";
 import {FilterState} from "../interfaces/filter.ts";
 
 
 export const initialListingState: ListingState = {
+    selectedListing: null,
+    status: 'pending',
     resultCount: 0, page: 0, totalPages: 0, resultList: [],
 }
 
@@ -14,6 +16,12 @@ export const fetchListings = createAsyncThunk('listing/fetchListings', async (re
     const response = await axios.post<FilterState, {
         data: ListingState
     }>(`${import.meta.env.VITE_API_URL}/listing/search-by`, request);
+    return response.data;
+});
+export const getListingById = createAsyncThunk('listing/get-listing-by-id', async (id: string) => {
+    const response = await axios.get<FilterState, {
+        data: ListingItem
+    }>(`${import.meta.env.VITE_API_URL}/listing/get-listing/${id}`);
     return response.data;
 });
 // export const getMainCategories = createAsyncThunk('listing/get-main-categories', async (request: ListingRequest) => {
@@ -30,7 +38,7 @@ export const listingSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchListings.pending, (state) => {
-                // Optionally, you can update the state to indicate that the request is pending
+                state.status = 'pending';
                 console.log(state)
             })
             .addCase(fetchListings.fulfilled, (state, action) => {
@@ -38,6 +46,24 @@ export const listingSlice = createSlice({
                 state.resultCount = action.payload.resultCount;
                 state.page = action.payload.page;
                 state.totalPages = action.payload.totalPages;
+            });
+        builder
+            .addCase(getListingById.pending, (state) => {
+                state.status = 'pending';
+                console.log(state)
+            })
+            .addCase(getListingById.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                console.log("Action", action.payload);
+                state.selectedListing = {
+                    coverImage: action.payload.coverImage,
+                    title: action.payload.title,
+                    companyPhoto: action.payload.companyPhoto,
+                    description: action.payload.description,
+                    website: action.payload.website,
+                    tags: action.payload.tags
+                };
+
             });
         // .addCase(fetchListings.rejected, (state, action) => {
         //     // Optionally, you can update the state to indicate that the request failed

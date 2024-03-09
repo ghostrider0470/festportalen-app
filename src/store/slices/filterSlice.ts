@@ -70,9 +70,11 @@ export const filterSlice = createSlice({
         },
         updateRegions: (state, action) => {
             state.regions = action.payload;
+            setUrlBasedOnFilter(state);
         },
         updateCounties: (state, action) => {
             state.counties = action.payload;
+            setUrlBasedOnFilter(state);
         },
         updatePage: (state, action) => {
             state.page = action.payload;

@@ -38,29 +38,28 @@ const ListingsPage = () => {
 
 
     const ItemList = ({items}: { items: Listing[] }) => {
-        return (<div>
+        return (
             <Grid container spacing={2}>
                 {items.map((item) => (<Grid key={item.guid} item xs={12} sm={6} md={4}>
-                    <ListingItem {...item}/>
+                    <ListingItem key={item.guid} {...item}/>
                 </Grid>))}
             </Grid>
-
-        </div>);
+        );
 
     }
 
     return (
-        <Box bgcolor="white">
+        <Box bgcolor="white" sx={{height: 'auto'}}>
             <Container>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={4} md={3}>
-                        <Box sx={{padding: 2, height: '100vh'}}>
+                        <Box sx={{padding: 2}}>
                             <Typography variant="h6" gutterBottom>
                                 <FilterSidebar/>
                             </Typography>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={8} md={9}>
+                    <Grid mt={10} item xs={12} sm={8} md={9}>
                         {listings && <ItemList items={listings.resultList}/>}
                     </Grid>
                 </Grid>

@@ -2,11 +2,11 @@ import React from "react";
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import {useIsAuthenticated} from "../hooks/auth.ts";
 import PublicLayout from "../layout/PublicLayout.tsx";
-import LoginPage from "../view/LoginPage/LoginPage.tsx";
+import LoginPage from "../view/LoginPage";
 import HomePage from "../view/HomePage/HomePage.tsx";
 import PrivateLayout from "../layout/PrivateLayout.tsx";
-// import i18next from "../i18next.ts";
-import ListingsPage from "../view/ListingsPage/ListingsPage.tsx";
+import ListingsPage from "../view/ListingsPage";
+import ListingItemPage from "../view/ListingsPage/item";
 
 
 const RouteProvider: React.FC = () => {
@@ -29,6 +29,7 @@ const RouteProvider: React.FC = () => {
                     {path: '/', element: <HomePage/>, index: true},
                     {path: '/login', element: <LoginPage/>},
                     {path: '/listings/*', element: <ListingsPage/>},
+                    {path: '/listing/*', element: <ListingItemPage/>},
                 ],
             },
         ]);

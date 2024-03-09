@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardActions, CardContent, CardMedia, Rating, Stack, Typography} from "@mui/material";
+import {Card, CardActions, CardContent, CardMedia, Stack, Typography} from "@mui/material";
 import {getImgUrl} from "../utils/cloudinary.ts";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {Listing} from "../store/interfaces/listing.ts";
@@ -20,7 +20,11 @@ const ListingItem: React.FC<Listing> = (item: Listing) => {
         }
     }
 
-    return (<Card sx={{display: 'flex', flexDirection: 'column', maxHeight: '450px', maxWidth: '345px'}}>
+    return (
+        <Card sx={{display: 'flex', flexDirection: 'column', maxHeight: '450px', maxWidth: '345px'}}
+              onClick={() => {
+                  window.location.href = `/listing?item=${item.guid}`;
+              }}>
         <CardMedia
             sx={{minHeight: '160px', objectFit: 'cover'}}
             image={getImgUrl(item.advertisementCoverImage)}
@@ -36,13 +40,13 @@ const ListingItem: React.FC<Listing> = (item: Listing) => {
         </CardContent>
         <CardActions>
             <Stack>
-                <Stack spacing={2} alignItems="center" minHeight={'100px'}>
-                    <Rating sx={{fontSize: '2rem', marginRight: '0.5rem'}} name="read-only"
-                            value={item.averageRating} readOnly/>
-                    <Typography variant="body2" color="text.secondary" id='ratingText'>
-                        Ingen anmeldelser enda
-                    </Typography>
-                </Stack>
+                {/*<Stack spacing={2} alignItems="center" minHeight={'100px'}>*/}
+                {/*    <Rating sx={{fontSize: '2rem', marginRight: '0.5rem'}} name="read-only"*/}
+                {/*            value={item.averageRating} readOnly/>*/}
+                {/*    <Typography variant="body2" color="text.secondary" id='ratingText'>*/}
+                {/*        Ingen anmeldelser enda*/}
+                {/*    </Typography>*/}
+                {/*</Stack>*/}
                 <Stack direction="row" spacing={2} alignItems="left">
                     <LocationOnIcon sx={{fontSize: '2rem', marginRight: '0.5rem'}}/>
                     <Typography variant="h5" color="text.secondary">
