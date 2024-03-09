@@ -45,6 +45,7 @@ const RouteProvider: React.FC = () => {
                     {path: '/', element: <HomePage/>, index: true},
                     {path: '/login', element: <LoginPage/>},
                     {path: '/listings/*', element: <ListingsPage/>},
+                    {path: '/listing/*', element: <ListingItemPage/>},
                 ],
             },
 

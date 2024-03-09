@@ -36,7 +36,7 @@ const ListingItemPage = () => {
                     <img src={getImgUrl(listing?.coverImage)}
                          style={{height: '60vh', width: '100%', objectFit: 'cover', objectPosition: 'center 20%'}}
                          alt=''/>
-                    <Box sx={{padding: 2, height: '100vh'}}>
+                    <Box sx={{padding: 2, height: '100vh'}} mr={25}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={12} md={8}>
                                 {<Typography variant='h4'>{listing?.title}</Typography>}
