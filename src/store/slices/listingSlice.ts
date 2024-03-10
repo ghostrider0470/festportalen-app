@@ -61,7 +61,11 @@ export const listingSlice = createSlice({
                     companyPhoto: action.payload.companyPhoto,
                     description: action.payload.description,
                     links: action.payload.links,
-                    tags: action.payload.tags
+                    tags: action.payload.tags,
+                    contactPerson: action.payload.contactPerson,
+                    companyName: action.payload.companyName,
+                    phoneNumber: action.payload.phoneNumber,
+                    price: action.payload.price
                 };
 
             });

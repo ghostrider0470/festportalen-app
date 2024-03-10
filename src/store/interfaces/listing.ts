@@ -21,6 +21,10 @@ export interface ListingState {
 export interface ListingItem {
     coverImage: string;
     title: string;
+    companyName: string;
+    phoneNumber: string;
+    price: string;
+    contactPerson: string;
     description: string;
     companyPhoto: string;
     links: Links;

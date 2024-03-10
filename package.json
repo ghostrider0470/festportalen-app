@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --force",
+    "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint ./src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -24,6 +24,7 @@
     "@types/node": "^20.11.20",
     "axios": "^1.6.7",
     "axios-retry": "^4.0.0",
+    "clipboard-copy": "^4.0.1",
     "html-react-parser": "^5.1.8",
     "html-to-react": "^1.7.0",
     "i18next": "^23.9.0",
