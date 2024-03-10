@@ -44,7 +44,7 @@ const renderCardSubHeaderLinks = (item: ListingItem | null) => {
                 <Stack direction='row' mt={3}>
                     <LanguageIcon sx={{fontSize: 30}}/>
                     <Typography ml={2} variant='h5'>
-                        <Link href={fixUrl(item?.links.website)}>{beutifyUrl(item?.links.website)}</Link>
+                        <Link href={fixUrl(item?.links.website)}>{item?.links.website}</Link>
                     </Typography>
                 </Stack>
             }
